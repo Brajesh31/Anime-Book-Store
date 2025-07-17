@@ -1,0 +1,64 @@
+/* Home.css */
+.p-4 {
+    padding: 1rem;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .gap-x-4 {
+    gap: 1rem; /* Adjust as needed */
+  }
+  
+  .bg-sky-300 {
+    background-color: #7dd3fc; /* Adjust to your preferred sky blue color */
+  }
+  
+  .hover\:bg-sky-600:hover {
+    background-color: #0284c7; /* Adjust to your preferred hover color */
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .text-3xl {
+    font-size: 1.875rem; /* Adjust as needed */
+  }
+  
+  .my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .text-sky-800 {
+    color: #1e3a8a; /* Adjust to your preferred sky blue color */
+  }
+  
+  .text-4xl {
+    font-size: 2.25rem; /* Adjust as needed */
+  }
+  
