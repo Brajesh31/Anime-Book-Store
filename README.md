@@ -74,4 +74,4 @@ Run the backend against a disposable MongoDB database and exercise each CRUD end
 
 Original code and documentation are released under the MIT License. Third-party dependencies and demo assets may have separate terms.
 
-Last updated: 2026-10-17 11:21 UTC
+Last updated: 2026-10-17 14:57 UTC
