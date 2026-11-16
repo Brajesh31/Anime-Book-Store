@@ -24,6 +24,6 @@ const NotFound = () => (
       Back to catalogue
     </Link>
   </main>
-)
-;
+);
+
 export default NotFound;
