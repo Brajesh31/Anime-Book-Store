@@ -1,35 +1,67 @@
-# 🤝 Contributing
+# 🤝 Contributing to Anime Book Store
 
-Anime Book Store is currently a React/Vite frontend and Express/Mongoose API for book CRUD workflows.
+Thank you for considering a contribution. This repository is a React/Vite frontend and Express/Mongoose API for book catalogue CRUD workflows. Keep changes focused, testable, and aligned with the current product scope.
 
-## Before starting
+## 1. Before opening a change
 - Read the [README](./README.md) and [documentation index](./docs/README.md).
-- Search existing issues before opening a duplicate.
-- For larger work, describe the user problem and acceptance criteria in an issue.
-- Keep each change focused.
+- Search existing issues and pull requests for related work.
+- For a substantial feature, open an issue describing the user problem and acceptance criteria.
+- Do not begin with a broad rewrite when a small targeted change will solve the problem.
 
-## Setup
-Follow [docs/development.md](./docs/development.md). Install dependencies separately in `frontend/` and `backend/`, and use a disposable MongoDB database.
+## 2. Local setup
+Follow [docs/installation.md](./docs/installation.md). Install frontend and backend dependencies separately with `npm ci`. Use a disposable MongoDB database and synthetic records.
 
-## Engineering conventions
-- Keep screen behavior in React pages and shared behavior in reusable components.
-- Document API changes in `docs/api/README.md` and schema changes in `docs/data-model.md`.
-- Validate all untrusted values on the server.
-- Use an allow-list for update fields rather than forwarding arbitrary request bodies to Mongoose.
-- Preserve accessible labels, keyboard use, and visible pending/error states.
-- Update relevant docs and diagrams when behavior changes.
+## 3. Engineering expectations
+- Keep UI behavior in React pages and reusable components.
+- Keep API requests in the shared Axios client.
+- Validate all untrusted request data on the server.
+- Allow-list database update properties.
+- Keep model constraints and API validation aligned.
+- Use semantic HTML, accessible labels, keyboard interactions, and visible state feedback.
+- Avoid unnecessary dependencies and generated artifacts.
+- Do not introduce product capabilities that are only represented by placeholder UI.
 
-## Security
-Never commit `.env`, database URLs, passwords, tokens, dumps, private records, secret-bearing logs, `node_modules`, or build output. A credential-bearing URI was previously committed; assume it is compromised and do not reuse it. See [SECURITY.md](./SECURITY.md).
+## 4. Documentation expectations
+Update the corresponding guides in the same pull request:
+- Endpoint changes: `docs/api/README.md`.
+- Schema changes: `docs/data-model.md` and `docs/database.md`.
+- Browser behavior: `docs/features.md`.
+- Environment variables: `docs/configuration.md`.
+- Build/test changes: `docs/testing.md`.
+- Deployment changes: `docs/deployment.md`.
 
-## Validation
+Keep diagrams consistent with the actual code. Use synthetic examples only.
+
+## 5. Security and privacy
+Never commit `.env`, database URLs, passwords, tokens, dumps, private records, secret-bearing logs, `node_modules`, or build output. A credential-bearing URI was previously committed; assume it is compromised and never reuse it. Follow [SECURITY.md](./SECURITY.md) for vulnerability reporting.
+
+## 6. Validation commands
+
+Backend:
+```bash
+cd backend
+npm ci
+npm test
+```
+
+Frontend:
 ```bash
 cd frontend
 npm ci
 npm run lint
 npm run build
 ```
-Backend currently has no automated test command. Exercise changed routes using disposable records and document actual outcomes.
 
-## Pull requests
-Use the PR template. Explain behavior, affected modules, API/schema changes, migration needs, actual validation output, screenshots where relevant, and known limitations. Changes require review before acceptance.
+If a change requires a MongoDB service, run it against a dedicated disposable database and state the actual result in the pull request. Do not claim tests that were not run.
+
+## 7. Commit and pull request
+- Use a descriptive commit message.
+- Keep unrelated formatting or generated file changes out of the diff.
+- Explain the problem, approach, and user-visible impact.
+- Include API/schema compatibility notes.
+- Include screenshots for material UI changes.
+- List commands and actual validation results.
+- Call out known limitations and follow-up work.
+
+## 8. Review process
+A maintainer reviews correctness, security, accessibility, documentation, and scope. Passing CI is necessary but does not guarantee merge approval. Changes may require revision before acceptance.
