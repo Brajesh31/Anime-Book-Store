@@ -1,20 +1,20 @@
 # 🔌 API reference
 
-Current local base URL: `http://localhost:5555`. Router mount: `/books`. Authentication middleware is not present in the inspected source.
+Current local base URL: `http://localhost:5555`. The router is mounted at `/books`. Authentication middleware is not present in the inspected source.
 
-| Method | Endpoint | Behavior |
+| Method | Endpoint | Current behavior |
 |---|---|---|
 | GET | `/books` | Returns `{ count, data }` |
 | GET | `/books/:id` | Returns `Book.findById` result |
-| POST | `/books` | Requires title, author, publishYear; creates record (201) |
-| PUT | `/books/:id` | Requires fields and updates matching record |
-| DELETE | `/books/:id` | Deletes matching record |
+| POST | `/books` | Requires title, author, publishYear; creates a record (201) |
+| PUT | `/books/:id` | Requires fields and updates a matching record |
+| DELETE | `/books/:id` | Deletes a matching record |
 
-Create example:
+## Create payload
 ```json
 {"title":"Example Volume","author":"Example Author","publishYear":2024}
 ```
-The current create handler checks property presence and returns 400 when a required field is absent. List returns `{count,data}`. Read uses `findById`; missing records are not explicitly normalized to 404 and malformed IDs may be reported as 500. Update calls `findByIdAndUpdate(id, request.body)` and returns 404 for missing records. Passing arbitrary request body fields to persistence is a security gap; build an allow-listed update and enable validators. Delete returns 404 for a missing record.
+The current create handler checks property presence and returns 400 when a required value is absent. List responds with `{count,data}`. Read calls `findById`; missing records are not explicitly normalized to 404 and malformed IDs may become 500. Update calls `findByIdAndUpdate(id, request.body)`, returns 404 when no record matches, and otherwise responds with a success message. Passing arbitrary body fields to persistence is a security gap; allow-list fields and enable validators. Delete returns 404 for a missing record.
 
 | Status | Current use |
 |---|---|
@@ -24,8 +24,9 @@ The current create handler checks property presence and returns 400 when a requi
 | 404 | Missing update/delete record |
 | 500 | Caught exception |
 
-Some handlers return raw exception messages. Production APIs should use stable public error objects and private detailed logs.
+Some handlers return raw exception messages. Production APIs should use stable public errors and private detailed logs.
 
+## cURL
 ```bash
 curl http://localhost:5555/books
 curl -X POST http://localhost:5555/books -H 'Content-Type: application/json' -d '{"title":"Example Volume","author":"Example Author","publishYear":2024}'
@@ -52,4 +53,4 @@ flowchart TD
  I --> J
 ```
 
-No pagination, filtering, sorting, search, OpenAPI definition, authentication, rate-limit contract, or payment endpoint exists today.
+No pagination, filtering, sorting, search, OpenAPI definition, authentication, rate-limit contract, or payment endpoints are present.
