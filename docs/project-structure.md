@@ -35,6 +35,14 @@ Anime-Book-Store/
 │   └── package-lock.json
 ├── DEMO/
 ├── docs/
+│   ├── accessibility.md
+│   ├── performance.md
+│   ├── privacy-data-handling.md
+│   ├── threat-model.md
+│   ├── operations.md
+│   ├── release-process.md
+│   ├── product-scope.md
+│   └── diagrams/
 ├── .env.example
 ├── .eslintrc.cjs
 ├── .editorconfig
@@ -65,7 +73,14 @@ Anime-Book-Store/
 | `CODEOWNERS` | Default review ownership | Maintainers change |
 | `LICENSE` | Repository license | Legal ownership/license changes |
 | `CONTRIBUTING.md` | Contribution process | Review workflow changes |
-| `SECURITY.md` | Private vulnerability reporting | Security process changes |\n| `docs/accessibility.md` | Accessibility requirements and manual review | Interactive UI changes |\n| `docs/performance.md` | Performance measurement and scaling guidance | Query, bundle, or rendering changes |\n| `docs/privacy-data-handling.md` | Data inventory and retention practices | New data fields or integrations |\n| `docs/threat-model.md` | Threat register and trust boundaries | New endpoints or trust boundaries |\n| `docs/operations.md` | Incident and recovery runbook | Hosting and operational changes |\n| `docs/release-process.md` | Release gates and rollback process | CI/CD or deployment changes |\n| `docs/product-scope.md` | Implemented scope and non-goals | Feature additions or removals |
+| `SECURITY.md` | Private vulnerability reporting | Security process changes |
+| `docs/accessibility.md` | Accessibility requirements and manual review | Interactive UI changes |
+| `docs/performance.md` | Performance measurement and scaling guidance | Query, bundle, or rendering changes |
+| `docs/privacy-data-handling.md` | Data inventory and retention practices | New data fields or integrations |
+| `docs/threat-model.md` | Threat register and trust boundaries | New endpoints or trust boundaries |
+| `docs/operations.md` | Incident and recovery runbook | Hosting and operational changes |
+| `docs/release-process.md` | Release gates and rollback process | CI/CD or deployment changes |
+| `docs/product-scope.md` | Implemented scope and non-goals | Feature additions or removals |
 
 ## Backend modules
 
