@@ -5,11 +5,18 @@ type: software
 authors:
   - family-names: Kumar
     given-names: Brajesh
+abstract: >-
+  Anime Book Store is a React and Vite browser application backed by an
+  Express REST API and MongoDB. The current implementation demonstrates
+  book catalogue creation, reading, updating, and deletion workflows.
 repository-code: "https://github.com/Brajesh31/Anime-Book-Store"
 license: MIT
 keywords:
-  - react
-  - express
-  - mongodb
-  - mongoose
-  - crud
+  - book catalogue
+  - React
+  - Vite
+  - Express
+  - MongoDB
+  - Mongoose
+  - REST API
+  - CRUD
