@@ -9,10 +9,8 @@ const BookForm = ({
   onSubmit,
   submitting = false,
   submitLabel = 'Save book',
-}) => {
-  const currentYear = new Date().getFullYear();
+}) => (
 
-  return (
     <form
       onSubmit={onSubmit}
       className="mx-auto flex w-full max-w-2xl flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
@@ -97,6 +95,5 @@ const BookForm = ({
       </p>
     </form>
   );
-};
 
 export default BookForm;
