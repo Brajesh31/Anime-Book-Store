@@ -383,7 +383,7 @@ The backend test suite currently covers the pure request-validation utility. It 
 - No cart, checkout, payment, orders, inventory, or customer accounts are implemented.
 - The catalogue list is not paginated.
 - No search/filter/sort UI is implemented.
-- Full API integration and browser end-to-end tests remain future work.
+- Full API integration and browser end-to-end tests remain future work.\n- The current npm audit workflows report high and critical advisories in both dependency trees. Dependency remediation is required before treating the CI security gate as passing.
 - The repository contains historically tracked `node_modules` directories. Remove them only in a separate reviewed cleanup after verifying lockfile installs.
 
 Do not treat the current application as production-ready for public writes. See [SECURITY.md](./SECURITY.md) and [docs/deployment.md](./docs/deployment.md).
