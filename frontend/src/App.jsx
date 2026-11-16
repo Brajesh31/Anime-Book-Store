@@ -1,21 +1,38 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import CreateBook from './pages/CreateBooks';
 import ShowBook from './pages/ShowBook';
 import EditBook from './pages/EditBook';
 import DeleteBook from './pages/DeleteBook';
 
-const App = () => {
+function NotFound() {
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/books/create' element={<CreateBook />} />
-      <Route path='/books/details/:id' element={<ShowBook />} />
-      <Route path='/books/edit/:id' element={<EditBook />} />
-      <Route path='/books/delete/:id' element={<DeleteBook />} />
-    </Routes>
+    <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">404 · Page not found</p>
+      <h1 className="mt-3 text-4xl font-bold text-slate-950">This page is not in the catalogue.</h1>
+      <p className="mt-3 max-w-lg text-slate-600">
+        The address may be incorrect, or the page may have moved. Return to the
+        catalogue to continue browsing.
+      </p>
+      <Link
+        to="/"
+        className="mt-6 rounded-lg bg-sky-700 px-5 py-3 font-semibold text-white hover:bg-sky-800"
+      >
+        Back to catalogue
+      </Link>
+    </main>
   );
-};
+}
+
+const App = () => (
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/books/create" element={<CreateBook />} />
+    <Route path="/books/details/:id" element={<ShowBook />} />
+    <Route path="/books/edit/:id" element={<EditBook />} />
+    <Route path="/books/delete/:id" element={<DeleteBook />} />
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+);
 
 export default App;
