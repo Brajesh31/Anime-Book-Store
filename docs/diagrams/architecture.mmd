@@ -1,0 +1,11 @@
+flowchart LR
+  User[Visitor] --> Browser[React and Vite]
+  Browser -->|JSON over HTTP| API[Express API]
+  API --> Middleware[JSON parser and CORS]
+  Middleware --> Routes[Books routes]
+  Routes --> Validation[Payload validation]
+  Validation --> Model[Mongoose Book model]
+  Model --> DB[(MongoDB)]
+  DB --> Model
+  Model --> Routes
+  Routes --> Browser
