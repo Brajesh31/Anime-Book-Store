@@ -1,1 +1,3 @@
+# Default review owner for all first-party project files.
+# Add more specific path rules above the catch-all when maintainers expand.
 * @brajesh31
