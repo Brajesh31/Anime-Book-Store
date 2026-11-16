@@ -1,20 +1,20 @@
 # 📚 Documentation index
 
-This directory describes the current Anime Book Store application and highlights gaps without presenting planned work as shipped.
+This directory describes the current Anime Book Store implementation and distinguishes shipped behavior from recommendations.
 
 | Guide | Contents |
 |---|---|
-| [Project overview](./project-overview.md) | Purpose, scope, actors and boundaries |
-| [Architecture](./architecture.md) | Components and request path |
-| [Project structure](./project-structure.md) | Directory and file responsibilities |
-| [Features](./features.md) | Current CRUD screen behavior |
-| [Data model](./data-model.md) | Book schema and persistence |
+| [Project overview](./project-overview.md) | Purpose, scope and boundaries |
+| [Architecture](./architecture.md) | Components, request flow and decisions |
+| [Project structure](./project-structure.md) | Directory/file responsibilities |
+| [Features](./features.md) | CRUD screens and actual UI behavior |
+| [Data model](./data-model.md) | Mongoose schema and persistence |
 | [Configuration](./configuration.md) | Runtime settings and secret handling |
-| [API reference](./api/README.md) | Endpoint behavior and payload examples |
-| [Development](./development.md) | Local setup and developer workflow |
+| [API reference](./api/README.md) | Endpoint behavior and examples |
+| [Development](./development.md) | Local setup |
 | [Testing](./testing.md) | Existing checks and test gaps |
-| [Deployment](./deployment.md) | Production readiness |
+| [Deployment](./deployment.md) | Production readiness checklist |
 | [Troubleshooting](./troubleshooting.md) | Common local issues |
 
-## Documentation maintenance
-Update the API guide when routes or response contracts change, the data-model guide when schema changes, and architecture/testing/security docs when their corresponding behavior changes. Keep diagrams as reviewable Mermaid source. Never include live credentials, private records, or fabricated test results.
+## Maintenance rules
+Update the API guide when route behavior changes, data-model docs when schema changes, and relevant architecture/testing/security docs when system behavior changes. Keep diagrams in Mermaid source. Never add real credentials, private records, or invented test results.
