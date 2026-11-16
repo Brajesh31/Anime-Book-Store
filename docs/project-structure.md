@@ -6,7 +6,7 @@ This guide maps first-party files. Generated dependency trees, lockfile contents
 
 ```text
 Anime-Book-Store/
-├── .github/ISSUE_TEMPLATE/
+├── .github/\n│   ├── ISSUE_TEMPLATE/\n│   ├── workflows/\n│   ├── dependabot.yml\n│   └── PULL_REQUEST_TEMPLATE.md\n├── backend/\n│   ├── models/bookModel.js\n│   ├── routes/booksRoute.js\n│   ├── tests/bookValidation.test.js\n│   ├── utils/bookValidation.js\n│   ├── config.js\n│   ├── index.js\n│   ├── package.json\n│   └── package-lock.json\n├── frontend/\n│   ├── public/book-store.svg\n│   ├── src/\n│   ├── index.html\n│   ├── package.json\n│   └── package-lock.json\n├── DEMO/\n├── docs/\n├── .env.example\n├── .eslintrc.cjs\n├── .editorconfig\n├── .gitattributes\n├── .gitignore\n├── CHANGELOG.md\n├── CITATION.cff\n├── CODEOWNERS\n├── CODE_OF_CONDUCT.md\n├── CONTRIBUTING.md\n├── LICENSE\n├── README.md\n├── ROADMAP.md\n├── SECURITY.md\n└── SUPPORT.md\n\n<!-- Legacy tree retained below for comparison in older branches. -->\n<!--
 ├── .github/workflows/
 ├── backend/
 │   ├── models/bookModel.js
