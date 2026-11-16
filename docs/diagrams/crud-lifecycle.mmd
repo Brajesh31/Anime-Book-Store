@@ -1,0 +1,22 @@
+flowchart TD
+  Start([User action]) --> Action{CRUD operation}
+  Action -->|Create| Create[POST /books]
+  Action -->|Read list| List[GET /books]
+  Action -->|Read one| Read[GET /books/:id]
+  Action -->|Update| Update[PUT /books/:id]
+  Action -->|Delete| Delete[DELETE /books/:id]
+  Create --> Validate[Validate payload]
+  Update --> Validate
+  Read --> IdCheck[Validate ObjectId]
+  Delete --> IdCheck
+  Validate --> Valid{Valid?}
+  Valid -->|No| Bad[400 response]
+  Valid -->|Yes| Persist[(MongoDB operation)]
+  IdCheck --> Exists{Record exists?}
+  Exists -->|No| Missing[404 response]
+  Exists -->|Yes| Persist
+  Persist --> Result[JSON response]
+  List --> Result
+  Bad --> Finish([Return response])
+  Missing --> Finish
+  Result --> Finish
