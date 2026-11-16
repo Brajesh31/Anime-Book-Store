@@ -12,7 +12,7 @@ flowchart LR
  API --> Logs[Redacted logs]
  API --> Monitor[Health monitoring]
 ```
-This is a target architecture, not an environment currently provisioned by this repository.
+This is a target design, not a currently provisioned environment.
 
 ## Frontend build
 ```bash
@@ -30,24 +30,23 @@ npm start
 ```
 Before deployment, replace hard-coded settings with validated runtime environment variables and rotate the committed database credential.
 
-## Production controls
+## Production requirements
 - Rotate and revoke exposed database credentials.
 - Load secrets from host-managed environment settings.
 - Restrict CORS to the deployed frontend origin.
 - Validate IDs and every request field.
-- Add authentication and authorization if public users must not mutate data.
-- Add health/readiness checks and redacted structured logs.
-- Configure TLS, security headers, rate limits and request size limits.
+- Add authentication and authorization if untrusted users must not mutate data.
+- Add health/readiness checks, redacted structured logs, TLS, security headers, rate limits and request size limits.
 - Configure process restart policy, backups and restore exercises.
 - Define release ownership and rollback.
 
-Use separate least-privilege databases/users for local, preview and production. Never put private secrets in Vite `VITE_*` variables.
+Use distinct least-privilege databases/users for local, preview and production. Never place private secrets in Vite `VITE_*` variables.
 
 ## Release checklist
 - [ ] CI passes on release commit.
-- [ ] Frontend artifact reviewed.
+- [ ] Frontend build artifact reviewed.
 - [ ] Backend starts with production configuration.
-- [ ] Database connection verified.
+- [ ] Database connectivity verified.
 - [ ] CORS, TLS and SPA fallback verified.
 - [ ] Logs redact secrets and personal data.
 - [ ] Backup, restore and rollback exercised.
