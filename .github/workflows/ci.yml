@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend lint and build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+  backend:
+    name: Backend install and syntax
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - run: node --check index.js && node --check config.js && node --check routes/booksRoute.js && node --check models/bookModel.js
+
+  documentation:
+    name: Markdown relative-link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate links
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          failures = []
+          for md in Path('.').rglob('*.md'):
+              if any(part in {'.git', 'node_modules'} for part in md.parts):
+                  continue
+              for target in re.findall(r'\]\((?!https?://|#)([^)]+)\)', md.read_text(encoding='utf-8')):
+                  target = target.split('#', 1)[0]
+                  if target and not (md.parent / target).resolve().exists():
+                      failures.append(f'{md}: {target}')
+          if failures:
+              print('\n'.join(failures))
+              raise SystemExit(1)
+          print('Relative Markdown links verified.')
+          PY

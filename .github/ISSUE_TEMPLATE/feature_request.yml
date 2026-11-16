@@ -1,0 +1,30 @@
+name: 💡 Feature request
+description: Propose a scoped catalogue improvement.
+title: '[Feature]: '
+labels: ['enhancement']
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem or need
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and user flow
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Project area
+      options: [Catalogue UI, CRUD API, Data model, Security, Documentation, Developer experience]
+    validations:
+      required: true
