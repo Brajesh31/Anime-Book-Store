@@ -26,6 +26,15 @@ This directory is the engineering handbook for Anime Book Store. Each guide desc
 | [Deployment and operations](./deployment.md) | Hosting topology, release, monitoring and rollback |
 | [Troubleshooting](./troubleshooting.md) | Failure diagnosis and safe diagnostic bundle |
 | [FAQ](./faq.md) | Common setup and scope questions |
+| [Accessibility](./accessibility.md) | Semantic HTML, keyboard access, focus, forms and manual checks |
+| [Performance](./performance.md) | Measurement, frontend/API/database performance and scaling |
+| [Privacy and data handling](./privacy-data-handling.md) | Data inventory, minimisation, retention and incident response |
+| [Threat model](./threat-model.md) | Trust boundaries, threats and prioritised mitigations |
+| [Operations runbook](./operations.md) | Routine checks, incidents, health checks and recovery |
+| [Release process](./release-process.md) | Change workflow, release gates, deployment and rollback |
+| [Product scope](./product-scope.md) | Implemented capabilities and explicit product boundaries |
+| [Architecture diagram source](./diagrams/architecture.mmd) | Editable Mermaid system architecture |
+| [CRUD lifecycle diagram source](./diagrams/crud-lifecycle.mmd) | Editable Mermaid CRUD workflow |
 
 ## Documentation standards
 
