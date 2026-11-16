@@ -24,7 +24,7 @@ This file records notable repository changes. It is not intended to repeat every
 - Expanded the README and engineering guides.
 - Added project overview, API contract, data model, database, configuration, installation, development, testing, deployment, and troubleshooting guidance.
 - Added Mermaid diagrams for architecture, request flow, record lifecycle, and deployment.
-- Added GitHub issue forms, PR template, CI, dependency audit, and repository hygiene checks.
+- Added GitHub issue forms, PR template, CI, dependency audit, Gitleaks history scanning, Dependabot schedules, and repository hygiene checks.\n- Added a project-specific SVG favicon and documented frontend build configuration.
 - Documented the previously exposed credential and the tracked dependency directory cleanup requirement.
 
 ## Existing baseline
