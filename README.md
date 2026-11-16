@@ -411,6 +411,14 @@ Security and reliability work take priority over new product features. See [ROAD
 | [Deployment](./docs/deployment.md) | Production operations |
 | [Troubleshooting](./docs/troubleshooting.md) | Diagnostics |
 | [FAQ](./docs/faq.md) | Common questions |
+| [Accessibility](./docs/accessibility.md) | Keyboard, focus, semantics, forms and accessibility review |
+| [Performance](./docs/performance.md) | Measurement strategy and scaling guidance |
+| [Privacy and data handling](./docs/privacy-data-handling.md) | Data inventory, retention and incident response |
+| [Threat model](./docs/threat-model.md) | Security boundaries and prioritised risk register |
+| [Operations runbook](./docs/operations.md) | Health checks, incidents, backup and recovery |
+| [Release process](./docs/release-process.md) | Review gates, deployment, smoke tests and rollback |
+| [Product scope](./docs/product-scope.md) | Implemented features and explicit non-goals |
+| [Editable diagrams](./docs/diagrams/) | Mermaid architecture and CRUD lifecycle source |
 
 ## 🤝 Contributing
 
