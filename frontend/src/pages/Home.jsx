@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineAddBox } from 'react-icons/md';
 import Spinner from '../components/Spinner';
 import BooksTable from '../components/home/BooksTable';
@@ -12,6 +12,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showType, setShowType] = useState('table');
+  const navigate = useNavigate();
 
   const loadBooks = useCallback(async () => {
     setLoading(true);
@@ -86,7 +87,7 @@ const Home = () => {
         {loading && <Spinner label="Loading books" />}
         {!loading && error && <ErrorState message={error} onRetry={loadBooks} />}
         {!loading && !error && books.length === 0 && (
-          <EmptyState onCreate={() => { window.location.href = '/books/create'; }} />
+          <EmptyState onCreate={() => navigate('/books/create')} />
         )}
         {!loading && !error && books.length > 0 && (
           <div className="mt-4">

@@ -3,13 +3,13 @@
  *
  * Local development values are read from the repository-root .env file when
  * present. Host-provided environment variables always take precedence. This
- * loader intentionally supports simple KEY=VALUE lines only; do not use it
- * for shell expansion or complex multiline secrets.
+ * intentionally supports simple KEY=VALUE lines only; do not use it for shell
+ * expansion or multiline secret values.
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-const localEnvPath = fileURLToPath(new URL('../../.env', import.meta.url));
+const localEnvPath = fileURLToPath(new URL('../.env', import.meta.url));
 
 function loadLocalEnvironment() {
   if (!existsSync(localEnvPath)) return;
