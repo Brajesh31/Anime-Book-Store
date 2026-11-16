@@ -1,79 +1,65 @@
-import React, { useState } from 'react';
-import BackButton from '../components/BackButton';
-import Spinner from '../components/Spinner';
-import axios from 'axios';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import BackButton from '../components/BackButton';
+import BookForm from '../components/BookForm';
+import api, { getApiErrorMessage } from '../lib/api';
+
+const initialValues = { title: '', author: '', publishYear: '' };
 
 const CreateBooks = () => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [publishYear, setPublishYear] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [values, setValues] = useState(initialValues);
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleSaveBook = () => {
-    const data = {
-      title,
-      author,
-      publishYear,
-    };
-    setLoading(true);
-    axios
-      .post('http://localhost:5555/books', data)
-      .then(() => {
-        setLoading(false);
-        enqueueSnackbar('Book Created successfully', { variant: 'success' });
-        navigate('/');
-      })
-      .catch((error) => {
-        setLoading(false);
-        // alert('An error happened. Please Chack console');
-        enqueueSnackbar('Error', { variant: 'error' });
-        console.log(error);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setValues((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (submitting) return;
+
+    setSubmitting(true);
+    try {
+      await api.post('/books', {
+        ...values,
+        publishYear: Number(values.publishYear),
       });
+      enqueueSnackbar('Book created successfully.', { variant: 'success' });
+      navigate('/');
+    } catch (error) {
+      enqueueSnackbar(getApiErrorMessage(error, 'The book could not be created.'), {
+        variant: 'error',
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <div className='p-4'>
+    <main className="mx-auto min-h-screen w-full max-w-4xl p-4 sm:p-6 lg:p-8">
       <BackButton />
-      <h1 className='text-3xl my-4'>Create Book</h1>
-      {loading ? <Spinner /> : ''}
-      <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Title</label>
-          <input
-            type='text'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2 w-full'
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Author</label>
-          <input
-            type='text'
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
-        </div>
-        <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Publish Year</label>
-          <input
-            type='number'
-            value={publishYear}
-            onChange={(e) => setPublishYear(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2  w-full '
-          />
-        </div>
-        <button className='p-2 bg-sky-300 m-8' onClick={handleSaveBook}>
-          Save
-        </button>
-      </div>
-    </div>
+      <header className="my-8">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+          Catalogue management
+        </p>
+        <h1 className="mt-2 text-3xl font-bold text-slate-950">Add a new book</h1>
+        <p className="mt-2 text-slate-600">
+          Enter the book details below. All three fields are required.
+        </p>
+      </header>
+      <BookForm
+        values={values}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        submitting={submitting}
+        submitLabel="Create book"
+      />
+    </main>
   );
-}
+};
 
-export default CreateBooks
+export default CreateBooks;
