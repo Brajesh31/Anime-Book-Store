@@ -2,7 +2,18 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
+  "description": "React and Vite browser application for the Anime Book Store catalogue.",
+  "author": "Brajesh Kumar",
+  "license": "MIT",
   "type": "module",
+  "keywords": [
+    "anime-book-store",
+    "book-catalogue",
+    "react",
+    "vite",
+    "tailwind-css",
+    "crud"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
