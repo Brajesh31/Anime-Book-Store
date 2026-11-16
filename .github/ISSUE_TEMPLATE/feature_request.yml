@@ -25,6 +25,12 @@ body:
     id: area
     attributes:
       label: Project area
-      options: [Catalogue UI, CRUD API, Data model, Security, Documentation, Developer experience]
+      options:
+        - Catalogue UI
+        - CRUD API
+        - Data model
+        - Security
+        - Documentation
+        - Developer experience
     validations:
       required: true

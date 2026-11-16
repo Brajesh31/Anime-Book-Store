@@ -22,7 +22,12 @@ body:
     id: area
     attributes:
       label: Affected area
-      options: [Frontend, Backend API, MongoDB persistence, Build or tooling, Documentation]
+      options:
+        - Frontend
+        - Backend API
+        - MongoDB persistence
+        - Build or tooling
+        - Documentation
     validations:
       required: true
   - type: textarea

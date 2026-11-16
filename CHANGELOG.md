@@ -1,10 +1,13 @@
-# Changelog
+# 📜 Changelog
 
-## [Unreleased]
+Repository milestones are recorded here, not every individual commit.
 
-- Added repository-specific documentation and governance files.
+## Unreleased
+- Added documentation index and project overview.
+- Added project-specific architecture, structure, feature, data model, configuration, API, development, testing, deployment, and troubleshooting guides.
+- Added Mermaid architecture, component, state, entity, deployment, and API workflow diagrams.
+- Added GitHub CI, dependency audit, issue form and PR template files.
+- Documented the committed database credential exposure and tracked dependency directory issue.
 
-## [0.1.0] - 2025-01-01
-
-- Added React CRUD pages for listing, creating, viewing, editing, and deleting books.
-- Added Express/Mongoose API and MongoDB persistence.
+## Existing application baseline
+The application provides React CRUD screens backed by an Express/Mongoose books API. Consult source history for prior implementation milestones.
