@@ -1,32 +1,109 @@
-# ⚙️ Configuration and secrets
+# ⚙️ Configuration and secrets management
 
-## Current behavior
-`backend/config.js` exports a hard-coded port and MongoDB URI. Backend code does not currently load dotenv or read `process.env`. Frontend pages call `http://localhost:5555` directly. The root `.env.example` is not wired into runtime code.
+## 1. Configuration sources
 
-## Critical credential remediation
-A credential-bearing MongoDB URI exists in tracked backend configuration. Treat it as compromised because the repository is public. Rotate the database password/user in the provider, revoke the old credential, inspect access logs, and remove the secret from active source in a dedicated change. Removing the current file value does not erase Git history. Never reproduce the old URI in docs, tickets, or messages.
+The backend reads values from the process environment and, for local development, the root `.env` file. Values already present in the hosting environment take precedence over local file values.
 
-## Intended environment contract
-| Variable | Example | Intended consumer |
-|---|---|---|
-| `PORT` | `5555` | Backend listener |
-| `MONGODB_URI` | `mongodb://localhost:27017/anime_book_store` | Backend database |
-| `VITE_API_BASE_URL` | `http://localhost:5555` | Public browser API origin |
+| Variable | Required | Example | Consumer | Secret? |
+|---|---|---|---|---|
+| `PORT` | No | `5555` | Express listener | No |
+| `MONGODB_URI` | Yes | `mongodb://127.0.0.1:27017/anime_book_store` | Mongoose | **Yes** when credentials are embedded |
+| `CORS_ORIGIN` | No | `http://localhost:5173` | CORS allow-list | No |
+| `VITE_API_BASE_URL` | No | `http://localhost:5555` | Browser Axios client | No |
 
-These names appear in `.env.example` but current code does not consume them.
+## 2. Local setup
 
-## Recommended implementation
-1. Rotate and revoke the exposed credential.
-2. Implement backend environment loading using a supported Node mechanism or declared dotenv dependency.
-3. Fail startup if required values are missing. Do not default to a production URI.
-4. Centralize Axios setup and use `import.meta.env.VITE_API_BASE_URL` for the public API origin.
-5. Keep local `.env` ignored and commit placeholders only.
+At the repository root:
+```bash
+cp .env.example .env
+```
+Edit `.env` and set `MONGODB_URI` to a database you own and are authorized to use. The example is intentionally a local MongoDB URI. Keep `.env` untracked.
 
-Vite exposes `VITE_*` values to browser code. Never put database passwords, signing keys, or private API keys there.
+Start the backend from its directory:
+```bash
+cd backend
+npm ci
+npm run dev
+```
 
-- [ ] Rotate/revoke old credential.
-- [ ] Remove secret-bearing source config.
-- [ ] Implement environment loading and validation.
-- [ ] Wire frontend API base URL.
-- [ ] Verify env files remain ignored.
-- [ ] Separate local, preview and production settings.
+Start the frontend in another terminal:
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+The frontend reads `VITE_API_BASE_URL` at build/dev-server startup. Restart Vite after changing it.
+
+## 3. Parsing behavior
+
+The backend loader supports:
+- Blank lines.
+- Lines beginning with `#`.
+- Simple `KEY=VALUE` assignments.
+- Single- or double-quoted values.
+- Host-provided environment values taking precedence.
+
+It does not implement shell interpolation, variable expansion, escaped multiline secrets, or command substitution. Use your deployment platform's secret manager for production values.
+
+## 4. Port validation
+
+`PORT` must be an integer from 1 to 65535. If the value is malformed, startup fails with a clear configuration error. The default local port is 5555.
+
+## 5. CORS configuration
+
+`CORS_ORIGIN` is a comma-separated allow-list of browser origins, including scheme and port when relevant. Example:
+```text
+CORS_ORIGIN=http://localhost:5173,https://catalogue.example.com
+```
+Do not use `*` for a production API that accepts writes. CORS does not replace authentication.
+
+## 6. Vite environment safety
+
+Vite exposes variables prefixed with `VITE_` in browser code. They are public by design. Safe examples include an API base URL or a public analytics identifier. Never use this prefix for:
+- MongoDB credentials.
+- Private API tokens.
+- Session signing secrets.
+- Service-account keys.
+- Payment provider secret keys.
+
+## 7. Credential incident handling
+
+A MongoDB URI containing a username/password was previously committed in the backend configuration. Removing it from the current file does not invalidate the credential and does not erase earlier Git commits.
+
+Required response:
+1. Change the database password or create a new least-privilege database user.
+2. Revoke the old user/credential.
+3. Review database provider access logs for unexpected activity.
+4. Remove the secret from active source and verify the current branch contains no credential.
+5. Review Git history and coordinate history rewriting only if appropriate for collaborators and open PRs.
+6. Update local and hosted environment variables with the new credential.
+7. Run a secret scanner and review the result.
+8. Never paste the old or new URI into public issues, logs, chat, screenshots, or documentation.
+
+## 8. Environment separation
+
+| Environment | Database | Credentials | CORS |
+|---|---|---|---|
+| Local | Disposable local DB | Local-only user | Local Vite origin |
+| Preview | Isolated preview DB | Preview secret store | Preview frontend origin |
+| Production | Production DB | Host-managed secret store | Production frontend origin |
+
+Use least-privilege database users and separate backups. Do not point local experiments at production data.
+
+## 9. Troubleshooting
+
+- Missing `MONGODB_URI`: add it to root `.env` or host environment.
+- Invalid `PORT`: use an integer from 1 to 65535.
+- Browser CORS error: check exact scheme/host/port in `CORS_ORIGIN`.
+- Frontend still calls old API: restart Vite after changing `VITE_API_BASE_URL`.
+- MongoDB timeout: verify cluster state, network allow-list, DNS, user privileges, and URI encoding without printing the URI.
+
+## 10. Change checklist
+
+- [ ] Update `.env.example` with placeholders only.
+- [ ] Keep real `.env` ignored.
+- [ ] Never place secrets in Vite variables.
+- [ ] Update this document when a new setting is introduced.
+- [ ] Validate required settings at startup.
+- [ ] Keep separate settings for local, preview, and production.
