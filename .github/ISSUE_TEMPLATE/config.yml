@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Support and usage questions
+    url: https://github.com/Brajesh31/Anime-Book-Store/discussions
+    about: Ask usage questions and discuss setup or implementation ideas.
+  - name: 🔐 Report a security vulnerability
+    url: https://github.com/Brajesh31/Anime-Book-Store/security/advisories/new
+    about: Do not publish credentials, exploit details, or sensitive data in a public issue. Follow SECURITY.md.
+  - name: 📚 Read the project documentation
+    url: https://github.com/Brajesh31/Anime-Book-Store/tree/main/docs
+    about: Check installation, API, troubleshooting, and development guides first.
