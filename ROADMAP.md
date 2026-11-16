@@ -25,6 +25,6 @@ Planned work only. Security and reliability precede product expansion.
 
 ## 🟢 P3: Product direction
 - [ ] Decide whether this remains a catalogue or evolves into commerce.
-- [ ] Before commerce work, design identity, ownership, inventory, cart, order and payment boundaries with security controls.
+- [ ] Before commerce work, design identity, ownership, inventory, cart, order and payment boundaries with appropriate security controls.
 
 Do not describe a roadmap item as shipped until code, tests, docs and deployed behavior demonstrate it.
