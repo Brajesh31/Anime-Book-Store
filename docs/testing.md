@@ -71,9 +71,9 @@ Use a dedicated disposable test database and never run destructive tests against
 
 The CI workflow installs from lockfiles, runs frontend lint/build, runs backend install and syntax/unit tests, and checks relative Markdown links. The dependency workflow runs npm audit and warns if dependency directories are tracked.
 
-CI cannot prove production deployment, database permissions, secret rotation, restore readiness, or browser behavior that is not covered by automated tests.
+CI cannot prove production deployment, database permissions, secret rotation, restore readiness, or browser behavior that is not covered by automated tests. The dependency audit currently reports high and critical advisories in the checked-in dependency trees, so the audit job is expected to fail until the packages and lockfiles are updated. Do not disable the audit threshold to make the workflow appear green.
 
-## 7. Quality gate for a release
+## 7. Dependency security gate\n\nThe dependency workflow runs `npm audit --omit=dev --audit-level=high` for both applications. A failure means npm has identified at least one high/critical advisory in the production dependency graph. Review the advisory, affected dependency path, available compatible fix, and potential breaking changes. Update the manifest and lockfile together, rerun lint/build/tests, and verify the new audit output. Do not use `npm audit fix --force` blindly because it may introduce breaking major-version upgrades.\n\n## 8. Quality gate for a release
 
 - [ ] Unit tests pass.
 - [ ] Frontend lint passes without warnings treated as errors.
@@ -88,6 +88,6 @@ CI cannot prove production deployment, database permissions, secret rotation, re
 - [ ] Accessibility and responsive behavior reviewed.
 - [ ] Backup/restore and rollback procedures are documented.
 
-## 8. Test data policy
+## 9. Test data policy
 
 Use clearly synthetic titles and authors. Do not use real customer records, private reading histories, production database exports, or actual credentials in tests, fixtures, screenshots, or logs.
