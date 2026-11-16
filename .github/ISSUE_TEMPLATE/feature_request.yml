@@ -1,24 +1,37 @@
 name: 💡 Feature request
-description: Propose a scoped catalogue improvement.
+description: Propose a scoped improvement to the catalogue or developer experience.
 title: '[Feature]: '
-labels: ['enhancement']
+labels:
+  - enhancement
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Explain the user problem before proposing implementation details.
+        Features such as accounts, inventory, checkout, and payments require separate security and domain design.
   - type: textarea
     id: problem
     attributes:
-      label: User problem or need
+      label: User problem
+      description: Who experiences the problem and why does it matter?
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: Proposed behavior and user flow
+      label: Proposed behavior
+      description: Describe the user journey from start to finish.
     validations:
       required: true
   - type: textarea
     id: acceptance
     attributes:
       label: Acceptance criteria
+      description: List observable conditions that prove the feature works.
+      placeholder: |
+        - [ ] User can...
+        - [ ] Invalid input...
+        - [ ] Loading and error states...
     validations:
       required: true
   - type: dropdown
@@ -27,10 +40,27 @@ body:
       label: Project area
       options:
         - Catalogue UI
-        - CRUD API
+        - API contract
         - Data model
+        - Accessibility
         - Security
+        - Testing and CI
         - Documentation
         - Developer experience
+        - Product direction
     validations:
       required: true
+  - type: textarea
+    id: data-impact
+    attributes:
+      label: Data, API, and migration impact
+      description: Mention new fields, endpoints, compatibility, and existing-record migration. Write None if not applicable.
+    validations:
+      required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Explain other approaches or trade-offs.
+    validations:
+      required: false

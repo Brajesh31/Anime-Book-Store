@@ -1,9 +1,35 @@
+# Dependencies installed from the package lockfiles.
 node_modules/
+**/node_modules/
+
+# Frontend and backend build output.
 dist/
 build/
+coverage/
+.nyc_output/
+
+# Local configuration and secrets. Keep only the safe example in Git.
 .env
 .env.*
 !.env.example
+
+# Logs, runtime files, and operating-system metadata.
 *.log
+npm-debug.log*
+yarn-debug.log*
 .DS_Store
+Thumbs.db
+
+# Local editor/IDE state. Project-level shared configuration may be committed
+# only when it is intentionally maintained by the project.
 .idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Temporary files and local test artifacts.
+*.tmp
+*.swp
+*.swo

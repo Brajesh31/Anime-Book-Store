@@ -1,24 +1,47 @@
 name: 📖 Documentation improvement
-description: Report missing or unclear documentation.
+description: Report missing, unclear, or inaccurate project documentation.
 title: '[Docs]: '
-labels: ['documentation']
+labels:
+  - documentation
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Documentation should describe the code that exists and clearly mark proposed work.
+        Do not include secrets, private records, or unredacted logs.
   - type: input
     id: location
     attributes:
       label: File or section
-      placeholder: docs/architecture.md
+      description: Link the file or name the exact heading.
+      placeholder: docs/api/README.md, Error response contract
+    validations:
+      required: true
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue type
+      options:
+        - Missing explanation
+        - Incorrect behavior description
+        - Broken command or example
+        - Broken relative link
+        - Missing diagram
+        - Typo or clarity
+        - Other
     validations:
       required: true
   - type: textarea
     id: issue
     attributes:
       label: What is unclear or inaccurate?
+      description: Explain what a reader cannot understand or what contradicts the source.
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: Suggested improvement
+      label: Suggested correction
+      description: Include source-grounded details or a proposed outline.
     validations:
       required: false

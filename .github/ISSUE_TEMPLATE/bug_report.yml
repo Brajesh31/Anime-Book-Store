@@ -1,21 +1,20 @@
 name: 🐛 Bug report
-description: Report a reproducible defect.
+description: Report a reproducible defect in the catalogue, frontend, API, or developer workflow.
 title: '[Bug]: '
-labels: ['bug']
+labels:
+  - bug
 body:
   - type: markdown
     attributes:
-      value: 'Do not include credentials, database URLs, tokens, or private records.'
+      value: |
+        Thank you for reporting a problem. Search existing issues first.
+        **Never include passwords, MongoDB URIs, access tokens, private records, or unredacted logs.**
   - type: textarea
     id: summary
     attributes:
-      label: What happened?
-    validations:
-      required: true
-  - type: textarea
-    id: reproduce
-    attributes:
-      label: Steps to reproduce
+      label: Summary
+      description: A concise description of the observed problem.
+      placeholder: The catalogue displays an error after...
     validations:
       required: true
   - type: dropdown
@@ -23,22 +22,52 @@ body:
     attributes:
       label: Affected area
       options:
-        - Frontend
+        - Frontend catalogue
+        - Create/edit form
+        - Details/delete screen
         - Backend API
         - MongoDB persistence
-        - Build or tooling
+        - Build or CI
         - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include the route, action, and safe test data needed to reproduce.
+      placeholder: |
+        1. Start the backend with a disposable database.
+        2. Open the catalogue.
+        3. Select...
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
       label: Expected behavior
+      description: What should the application do?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happened instead? Include the exact status code where relevant.
     validations:
       required: true
   - type: textarea
     id: environment
     attributes:
-      label: Environment and redacted logs
+      label: Environment
+      description: OS, Node.js version, npm version, browser, and whether MongoDB is local or hosted. Do not paste connection strings.
     validations:
       required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted logs or screenshots
+      description: Remove tokens, credentials, personal information, and private database values.
+    validations:
+      required: false

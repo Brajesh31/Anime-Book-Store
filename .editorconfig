@@ -1,3 +1,6 @@
+# EditorConfig keeps formatting consistent across editors and operating systems.
+# This file is intentionally tool-neutral and does not require a formatter.
+
 root = true
 
 [*]
@@ -9,4 +12,14 @@ indent_size = 2
 trim_trailing_whitespace = true
 
 [*.md]
+# Preserve intentional Markdown line breaks and aligned tables.
 trim_trailing_whitespace = false
+
+[*.{json,jsonc,yml,yaml}]
+indent_size = 2
+
+[*.{js,jsx,mjs,cjs,css,html}]
+indent_size = 2
+
+[*.{png,jpg,jpeg,gif,webp,svg,ico}]
+charset = unset

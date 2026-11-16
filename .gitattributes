@@ -1,9 +1,26 @@
+# Normalize source files to LF so diffs are stable across operating systems.
 * text=auto
+
+# Explicit text formats used by this repository.
 *.js text eol=lf
 *.jsx text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
 *.json text eol=lf
 *.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
 *.css text eol=lf
+*.html text eol=lf
+*.xml text eol=lf
+*.cff text eol=lf
+*.sh text eol=lf
+
+# Images and other binary assets must not be line-ending converted.
 *.png binary
 *.jpg binary
 *.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
